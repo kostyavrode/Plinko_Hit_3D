@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
     {
         instance = this;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (target)
         {

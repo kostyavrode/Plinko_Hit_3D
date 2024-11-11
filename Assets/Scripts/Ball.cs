@@ -11,7 +11,6 @@ public class Ball : MonoBehaviour
     private Sequence sequence;
     private void Update()
     {
-        Debug.Log(rb.velocity);
         if (rb.velocity.y<-10)
         {
             rb.velocity=new Vector3(rb.velocity.x,-10,rb.velocity.z);
@@ -35,14 +34,13 @@ public class Ball : MonoBehaviour
     public void ForceBall(Vector3 forceVector,float forcePower)
     {
         rb.AddForce(forcePower * forceVector);
-        Debug.Log("Forced");
     }
     private void TurnFX()
     {
         sequence.Kill();
         fx.transform.localScale = Vector3.zero;
         fx.SetActive(true);
-        sequence.Append(fx.transform.DOScale(Vector3.one * 0.03f, 3f));
+        sequence.Append(fx.transform.DOScale(Vector3.one * 0.03f, 5f));
     }
     private void TurnOffFX()
     {
