@@ -15,6 +15,10 @@ public class CameraController : MonoBehaviour
     {
         instance = this;
     }
+    private void OnEnable()
+    {
+        transform.DORotate(new Vector3(90, 0, 0), 0.5f);
+    }
     private void FixedUpdate()
     {
         if (target)

@@ -15,7 +15,7 @@ public class Ball : MonoBehaviour
         {
             rb.velocity=new Vector3(rb.velocity.x,-10,rb.velocity.z);
         }
-        if (rb.velocity.y<-9.7f)
+        if (rb.velocity.y<-9.5f)
         {
             TurnFX();
         }
@@ -41,6 +41,7 @@ public class Ball : MonoBehaviour
         fx.transform.localScale = Vector3.zero;
         fx.SetActive(true);
         sequence.Append(fx.transform.DOScale(Vector3.one * 0.03f, 5f));
+        Debug.Log("TurnFx");
     }
     private void TurnOffFX()
     {
