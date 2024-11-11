@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using DG.Tweening;
+using System;
 
 public class AnimationScript : MonoBehaviour {
 
@@ -85,4 +87,9 @@ public class AnimationScript : MonoBehaviour {
             }
         }
 	}
+
+    public void Blow(Action onComplete)
+    {
+        transform.DOScale(Vector3.zero, 0.3f).OnComplete(()=>onComplete?.Invoke());
+    }
 }

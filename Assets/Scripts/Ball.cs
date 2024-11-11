@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,22 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float speed;
-
+    [SerializeField] private GameObject fx;
+    private Sequence sequence;
     private void Update()
     {
         Debug.Log(rb.velocity);
         if (rb.velocity.y<-10)
         {
             rb.velocity=new Vector3(rb.velocity.x,-10,rb.velocity.z);
+        }
+        if (rb.velocity.y<-9.7f)
+        {
+            TurnFX();
+        }
+        else
+        {
+            TurnOffFX();
         }
     }
 
@@ -26,5 +36,22 @@ public class Ball : MonoBehaviour
     {
         rb.AddForce(forcePower * forceVector);
         Debug.Log("Forced");
+    }
+    private void TurnFX()
+    {
+        sequence.Kill();
+        fx.transform.localScale = Vector3.zero;
+        fx.SetActive(true);
+        sequence.Append(fx.transform.DOScale(Vector3.one * 0.03f, 3f));
+    }
+    private void TurnOffFX()
+    {
+        sequence.Kill();
+        sequence.Append(fx.transform.DOScale(Vector3.zero, 0.1f).OnComplete(() => 
+        {
+            fx.SetActive(false);
+            sequence.Kill();
+        }
+        ));
     }
 }
