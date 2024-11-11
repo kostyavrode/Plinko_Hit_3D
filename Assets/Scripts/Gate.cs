@@ -16,5 +16,6 @@ public class Gate : MonoBehaviour
     public void EndGame()
     {
         Debug.Log("Game Ended +x"+multiplier.ToString());
+        GameManager.instance.EndGame();
     }
 }

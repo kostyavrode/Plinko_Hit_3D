@@ -6,8 +6,12 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     public static UIController instance;
+    public GameObject endGamePanel;
+    public GameObject inGamePanel;
 
     public TMP_Text coinsText;
+
+    public TMP_Text winAmountText;
 
     private void Awake()
     {
@@ -24,5 +28,11 @@ public class UIController : MonoBehaviour
     public void ShowCoins()
     {
 
+    }
+    public void ShowEndGame()
+    {
+        endGamePanel.SetActive(true);
+        inGamePanel.SetActive(false);
+        winAmountText.text = "1";
     }
 }
