@@ -17,22 +17,23 @@ public class BootStrapState : IState
 
     public void Enter()
     {
-        throw new System.NotImplementedException();
+        RegisterServices();
+        sceneLoader.Load(Initial,EnterLoadLevel);
     }
 
     public void Exit()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     private void EnterLoadLevel()
     {
-        //stateMachine.Enter<LoadLevelState,string>("Main");
+        stateMachine.Enter<LoadLevelState,string>("Main");
     }
 
     private void RegisterServices()
     {
-        Game.InputService = RegisterServiceInput();
+        //Game.InputService = RegisterServiceInput();
     }
 
     private static IInputService RegisterServiceInput()

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Game
 {
-    public static IInputService InputService;
+    public GameStateMachine stateMachine;
+    public InputService InputService;
 
+    public Game(ICoroutineRunner coroutineRunner,LoadingCurtain curtain)
+    {
+        stateMachine=new GameStateMachine(new SceneLoader(coroutineRunner),curtain);
+    }
 }
