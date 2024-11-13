@@ -16,6 +16,7 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        ShowCoins();
     }
     public void StartGame()
     {
@@ -27,12 +28,12 @@ public class UIController : MonoBehaviour
     }
     public void ShowCoins()
     {
-
+        coinsText.text=PlayerPrefs.GetInt("Money").ToString();
     }
-    public void ShowEndGame()
+    public void ShowEndGame(string t)
     {
         endGamePanel.SetActive(true);
         inGamePanel.SetActive(false);
-        winAmountText.text = "1";
+        winAmountText.text = t;
     }
 }

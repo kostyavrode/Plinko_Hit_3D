@@ -5,6 +5,7 @@ using UnityEngine;
 public class Gate : MonoBehaviour
 {
     [SerializeField] private int multiplier;
+    private bool isGameEnded;
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag=="Player")
@@ -15,7 +16,11 @@ public class Gate : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("Game Ended +x"+multiplier.ToString());
-        GameManager.instance.EndGame();
+        if (!isGameEnded)
+        {
+            Debug.Log("Game Ended +x" + multiplier.ToString());
+            GameManager.instance.EndGame(multiplier);
+            isGameEnded = true;
+        }
     }
 }

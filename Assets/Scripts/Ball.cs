@@ -9,6 +9,7 @@ public class Ball : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private GameObject fx;
     private Sequence sequence;
+    private bool isFx;
     private void Update()
     {
         if (rb.velocity.y<-10)
@@ -37,20 +38,28 @@ public class Ball : MonoBehaviour
     }
     private void TurnFX()
     {
-        sequence.Kill();
-        fx.transform.localScale = Vector3.zero;
-        fx.SetActive(true);
-        sequence.Append(fx.transform.DOScale(Vector3.one * 0.03f, 5f));
-        Debug.Log("TurnFx");
+        if (!isFx)
+        {
+            sequence.Kill();
+            fx.transform.localScale = Vector3.zero;
+            fx.SetActive(true);
+            sequence.Append(fx.transform.DOScale(Vector3.one * 0.03f, 5f));
+            Debug.Log("TurnFx");
+            isFx = true;
+        }
     }
     private void TurnOffFX()
     {
-        sequence.Kill();
-        sequence.Append(fx.transform.DOScale(Vector3.zero, 0.1f).OnComplete(() => 
+        if (isFx)
         {
-            fx.SetActive(false);
             sequence.Kill();
+            sequence.Append(fx.transform.DOScale(Vector3.zero, 0.1f).OnComplete(() =>
+            {
+                fx.SetActive(false);
+                sequence.Kill();
+            }
+            ));
+            isFx = false;
         }
-        ));
     }
 }
