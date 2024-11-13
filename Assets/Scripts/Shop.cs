@@ -8,6 +8,12 @@ public class Shop : MonoBehaviour
     public int[] costs;
 
     public Button[] buttons;
+
+    public GameObject notenoug;
+    private void OnEnable()
+    {
+        notenoug.SetActive(false);
+    }
     public void Buy(int num)
     {
         if (PlayerPrefs.GetInt("Money")>=costs[num])
@@ -15,6 +21,10 @@ public class Shop : MonoBehaviour
             PlayerPrefs.SetInt("CurrentSkin", num);
             PlayerPrefs.SetInt("Money", PlayerPrefs.GetInt("Money") - costs[num]);
             buttons[num].interactable = false;
+        }
+        else
+        {
+            notenoug.SetActive(true);
         }
     }
 }
