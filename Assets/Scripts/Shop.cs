@@ -7,6 +7,8 @@ public class Shop : MonoBehaviour
 {
     public int[] costs;
 
+   
+
     public Texture[] textures;
 
     public Button[] buttons;

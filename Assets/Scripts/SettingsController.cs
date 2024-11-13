@@ -48,9 +48,12 @@ public class SettingsController : MonoBehaviour
             {
                 currentSource = Instantiate(audioSourcePrefab);
                 DontDestroyOnLoad(currentSource.gameObject);
-                SoundButton();
-                VibrateButton();
+
             }
+            isSoundEnabled = !isSoundEnabled;
+            isVibrateEnabled = !isVibrateEnabled;
+            SoundButton();
+            VibrateButton();
         }
 
         gameObject.SetActive(false);

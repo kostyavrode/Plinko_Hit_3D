@@ -21,6 +21,7 @@ public class Gate : MonoBehaviour
             Debug.Log("Game Ended +x" + multiplier.ToString());
             GameManager.instance.EndGame(multiplier);
             isGameEnded = true;
+            PlayerPrefs.SetInt("Levels", PlayerPrefs.GetInt("Levels") + 1);
         }
     }
 }
