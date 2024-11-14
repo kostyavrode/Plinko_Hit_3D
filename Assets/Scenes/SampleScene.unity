@@ -4399,6 +4399,9 @@ MonoBehaviour:
   - pausa
   - continuar
   - "voltar ao card\xE1pio"
+  - "n\xEDvel conclu\xEDdo!"
+  - moedas coletadas
+  - "voltar ao card\xE1pio"
   textBars:
   - {fileID: 1547949585}
   - {fileID: 1840847668}
@@ -4415,6 +4418,9 @@ MonoBehaviour:
   - {fileID: 867675847}
   - {fileID: 532202682}
   - {fileID: 732277987}
+  - {fileID: 2090773570}
+  - {fileID: 1000878257}
+  - {fileID: 1332212517}
 --- !u!4 &352487282
 Transform:
   m_ObjectHideFlags: 0
@@ -27044,7 +27050,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2107869780
 RectTransform:
   m_ObjectHideFlags: 0
