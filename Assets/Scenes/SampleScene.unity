@@ -4529,6 +4529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPortu: 0
+  portuSprite: {fileID: 21300000, guid: c2ef8b37af734d1408ae6d5ffffcad8a, type: 3}
+  imaheHolder: {fileID: 1710094711}
   portugales:
   - "Come\xE7ar"
   - Comprar
