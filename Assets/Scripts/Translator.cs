@@ -13,6 +13,19 @@ public class Translator : MonoBehaviour
 
     public TMP_Text[] textBars;
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        if (PlayerPrefs.GetInt("isPortu")==1)
+        {
+            Translate();
+        }
+    }
+
     public void Translate()
     {
         for (int i = 0; i < portugales.Length; i++)
@@ -20,5 +33,6 @@ public class Translator : MonoBehaviour
             textBars[i].text = portugales[i];
         }
         isPortu = true;
+        PlayerPrefs.SetInt("isPortu", 1);
     }
 }

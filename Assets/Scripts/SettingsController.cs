@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,6 +10,8 @@ public class SettingsController : MonoBehaviour
 
     private AudioSource currentSource;
 
+    public GameObject translator;
+
     public Button soundButton;
     public TMP_Text soundButtonText;
 
@@ -19,7 +21,7 @@ public class SettingsController : MonoBehaviour
     private bool isVibrateEnabled;
     private bool isSoundEnabled;
 
-    private void Awake()
+    private void Start()
     {
         if (PlayerPrefs.GetInt("Sound") == 0)
         {
@@ -42,12 +44,14 @@ public class SettingsController : MonoBehaviour
         {
             try
             {
+                
                 currentSource = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>();
             }
             catch
             {
                 currentSource = Instantiate(audioSourcePrefab);
                 DontDestroyOnLoad(currentSource.gameObject);
+                translator.gameObject.SetActive(true);
 
             }
             isSoundEnabled = !isSoundEnabled;
@@ -64,6 +68,11 @@ public class SettingsController : MonoBehaviour
         {
             isSoundEnabled = false;
             soundButtonText.text = "Off";
+            if (Translator.instance.isPortu)
+            {
+                soundButtonText.text = "Não";
+            }
+            
             currentSource.Pause();
             PlayerPrefs.SetInt("Sound", 0);
         }
@@ -71,6 +80,10 @@ public class SettingsController : MonoBehaviour
         {
             isSoundEnabled = true;
             soundButtonText.text = "On";
+            if (Translator.instance.isPortu)
+            {
+                soundButtonText.text = "Sim";
+            }
             currentSource.Play();
             PlayerPrefs.SetInt("Sound", 1);
         }
@@ -82,6 +95,10 @@ public class SettingsController : MonoBehaviour
         {
             isVibrateEnabled = false;
             vibrateButtonText.text = "Off";
+            if (Translator.instance.isPortu)
+            {
+                vibrateButtonText.text = "Não";
+            }
             //currentSource.Pause();
             PlayerPrefs.SetInt("Vibrate", 0);
         }
@@ -89,6 +106,10 @@ public class SettingsController : MonoBehaviour
         {
             isVibrateEnabled = true;
             vibrateButtonText.text = "On";
+            if (Translator.instance.isPortu)
+            {
+                vibrateButtonText.text = "Sim";
+            }
             currentSource.Play();
             PlayerPrefs.SetInt("Vibrate", 1);
         }
