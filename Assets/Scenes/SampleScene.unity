@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.14538348, g: 0.09414124, b: 0.21716052, a: 1}
+  m_IndirectSpecularColor: {r: 0.14352033, g: 0.090605654, b: 0.21572602, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4675,7 +4675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPortu: 0
-  portuSprite: {fileID: 21300000, guid: c2ef8b37af734d1408ae6d5ffffcad8a, type: 3}
+  portuSprite: {fileID: 21300000, guid: 10046278ea0614251a3711a64a3da031, type: 3}
   imaheHolder: {fileID: 1710094711}
   portugales:
   - "Come\xE7ar"
