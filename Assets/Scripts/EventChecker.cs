@@ -66,7 +66,7 @@ AppsFlyer.waitForATTUserAuthorizationWithTimeoutInterval(1);
             //ShowEventData(PlayerPrefs.GetString("eventData"), false);
             return;
         }
-        string id = "id6478546901";
+        string id = "id6738355589";
         AppsFlyer.initSDK(aid, id, this);
         AppsFlyer.startSDK();
         Task<bool> asyncChecker = CheckEvent();
@@ -128,19 +128,26 @@ AppsFlyer.waitForATTUserAuthorizationWithTimeoutInterval(1);
     }
     IEnumerator CheckEventAlive(string uri)
     {
-
+        Debug.Log(uri);
+        string t = GetUserAgent();
+        string model = GetModelData();
+        string lang = GetSystemLanguage();
+        t = ExtractIOSVersion(t);
+        Debug.Log(lang);
         PostData data = new PostData
         {
-            bundleId = "com.Thegamefarmholland",
-            osVersion = "16.0.1",
-            phoneModel = "iPhone 14 Pro Max",
-            language = "en",
+            bundleId = "com.Blink.Balls.and.glass",
+            osVersion = t,
+            phoneModel = model,
+            language = lang,
             phoneTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
             phoneTz = "Europe/Moscow",
             vpn = false
         };
-
+        Debug.Log(data.osVersion);
+        Debug.Log(data.phoneModel);
         string jsonData = JsonConvert.SerializeObject(data);
+        Debug.Log(jsonData);
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonData);
 
 
@@ -158,6 +165,7 @@ AppsFlyer.waitForATTUserAuthorizationWithTimeoutInterval(1);
                 try
                 {
                     SuccessData successData = JsonConvert.DeserializeObject<SuccessData>(www.downloadHandler.text);
+//                    Debug.Log(uniWebView.GetUserAgent());
                     Debug.Log("URL FINAL=" + successData.link);
                     //ShowEventData(successData.link);
                     UR = successData.link;
@@ -322,6 +330,74 @@ AppsFlyer.waitForATTUserAuthorizationWithTimeoutInterval(1);
     public void onAppOpenAttributionFailure(string error)
     {
         //ShowEventData();
+    }
+    string GetUserAgent()
+    {
+#if UNITY_IOS && !UNITY_EDITOR
+        // Используем UnityWebRequest для получения User Agent на iOS
+        return new UnityEngine.Networking.UnityWebRequest().GetRequestHeader("User-Agent");
+#else
+        return SystemInfo.operatingSystem;
+#endif
+    }
+    private string ExtractIOSVersion(string userAgent)
+    {
+        if (string.IsNullOrEmpty(userAgent))
+            return "0";
+
+        // Пример User Agent: "Mozilla/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X)"
+        string prefix = "iPhone OS ";
+        int startIndex = userAgent.IndexOf(prefix);
+
+        if (startIndex >= 0)
+        {
+            startIndex += prefix.Length;
+            int endIndex = userAgent.IndexOf(" ", startIndex);
+            if (endIndex > startIndex)
+            {
+                Debug.Log("piteamsya vitachit versiu ios");
+                return userAgent.Substring(startIndex, endIndex - startIndex).Replace("_", ".");
+            }
+        }
+
+        return "0";
+    }
+    private string GetModelData()
+    {
+        return SystemInfo.deviceModel;
+    }
+    private string GetSystemLanguage()
+    {
+        SystemLanguage systemLanguage = Application.systemLanguage;
+
+        switch (systemLanguage)
+        {
+            case SystemLanguage.Russian: return "ru";
+            case SystemLanguage.English: return "en";
+            case SystemLanguage.French: return "fr";
+            case SystemLanguage.German: return "de";
+            case SystemLanguage.Spanish: return "es";
+            case SystemLanguage.Italian: return "it";
+            case SystemLanguage.ChineseSimplified: return "zh";
+            case SystemLanguage.ChineseTraditional: return "zh-Hant";
+            case SystemLanguage.Japanese: return "ja";
+            case SystemLanguage.Korean: return "ko";
+            case SystemLanguage.Portuguese: return "pt";
+            case SystemLanguage.Arabic: return "ar";
+            case SystemLanguage.Dutch: return "nl";
+            case SystemLanguage.Turkish: return "tr";
+            case SystemLanguage.Polish: return "pl";
+            case SystemLanguage.Swedish: return "sv";
+            case SystemLanguage.Finnish: return "fi";
+            case SystemLanguage.Danish: return "da";
+            case SystemLanguage.Norwegian: return "no";
+            case SystemLanguage.Thai: return "th";
+            case SystemLanguage.Greek: return "el";
+            case SystemLanguage.Hindi: return "hi";
+            case SystemLanguage.Hungarian: return "hu";
+            case SystemLanguage.Vietnamese: return "vi";
+            case SystemLanguage.Ukrainian: return "uk";
+            default: return "un"; }
     }
 }
 [System.Serializable]
