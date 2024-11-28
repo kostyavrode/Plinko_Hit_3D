@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.14352033, g: 0.090605654, b: 0.21572602, a: 1}
+  m_IndirectSpecularColor: {r: 0.14099213, g: 0.08569836, b: 0.21321389, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -19778,7 +19778,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventName: YmxpbmtiYWxscHVzaC5pbmZv
   day: 1
-  month: 1
+  month: 12
   aid: iWKFbCMRXCvjgB5Qh4Rk54
   gameObjects: []
   bg: {fileID: 536229699}

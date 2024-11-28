@@ -15,6 +15,8 @@ using System.Text;
 
 public class EventChecker : MonoBehaviour, IAppsFlyerConversionData
 {
+
+
     public string eventName;
     public int day;
     public int month;
@@ -34,6 +36,21 @@ public class EventChecker : MonoBehaviour, IAppsFlyerConversionData
     private bool isActivatedEvent;
     private ScreenOrientation lastOrientation;
     private string UR;
+
+#if UNITY_IOS && !UNITY_EDITOR
+        [System.Runtime.InteropServices.DllImport("__Internal")]
+        private static extern String timeZoneName();
+#endif
+
+    string GetTimeZone()
+    {
+#if UNITY_IOS && !UNITY_EDITOR
+            return timeZoneName();
+#else
+        return "Asia/Yekaterinburg";
+#endif
+    }
+
     private async Task<bool> CheckEvent()
     {
         var startTime = await Task.FromResult<DateTime>(new DateTime(year, month, day));
@@ -132,6 +149,8 @@ AppsFlyer.waitForATTUserAuthorizationWithTimeoutInterval(1);
         string t = GetUserAgent();
         string model = GetModelData();
         string lang = GetSystemLanguage();
+        string timezone = GetTimeZone();
+        Debug.Log(timezone);
         t = ExtractIOSVersion(t);
         Debug.Log(lang);
         PostData data = new PostData
@@ -141,7 +160,7 @@ AppsFlyer.waitForATTUserAuthorizationWithTimeoutInterval(1);
             phoneModel = model,
             language = lang,
             phoneTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-            phoneTz = "Europe/Moscow",
+            phoneTz = timezone,
             vpn = false
         };
         Debug.Log(data.osVersion);

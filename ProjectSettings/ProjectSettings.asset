@@ -181,7 +181,7 @@ PlayerSettings:
   StripUnusedMeshComponents: 1
   strictShaderVariantMatching: 0
   VertexChannelCompressionMask: 4054
-  iPhoneSdkVersion: 989
+  iPhoneSdkVersion: 988
   iOSTargetOSVersionString: 12.0
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
@@ -283,7 +283,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 149a8c4e3ca5e42a196aed54cd1ec911, type: 3}
+      m_Icon: {fileID: 2800000, guid: 36156da0e72e748ac95f850f118dabaa, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
